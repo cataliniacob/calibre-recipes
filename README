@@ -1,0 +1,6 @@
+Recipes for Calibre (http://calibre-ebook.com/).
+
+For the Edge.org annual question the recipes are generated automatically from
+a general template in order to get a separate book for each year. Simply
+running all-edgeorg-annual-questions-books.py will generate all books from
+1998 to 2013.
