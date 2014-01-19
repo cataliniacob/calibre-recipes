@@ -95,6 +95,11 @@ data = (
      'http://edge.org/responses/q2013',
      common_toc_xpath1
      ),
+    ('2014',
+     'What scientific idea is ready for retirement?',
+     'http://edge.org/responses/what-scientific-idea-is-ready-for-retirement',
+     common_toc_xpath1
+     ),
     )
 
 if __name__ == '__main__':
