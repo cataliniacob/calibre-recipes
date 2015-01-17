@@ -100,6 +100,11 @@ data = (
      'http://edge.org/responses/what-scientific-idea-is-ready-for-retirement',
      common_toc_xpath1
      ),
+     ('2015',
+     'What do you think about machines that think?',
+     'http://edge.org/responses/q2015',
+     common_toc_xpath1
+     ),
     )
 
 if __name__ == '__main__':
