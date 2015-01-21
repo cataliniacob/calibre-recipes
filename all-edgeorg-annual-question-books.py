@@ -137,7 +137,7 @@ if __name__ == '__main__':
     print('Doing creations in groups of {}'.format(num_parallel_creations))
 
     threads = []
-    for year, title, url, toc_xpath in data:
+    for year, title, url, toc_xpath in data[::-1]:
         threads.append(threading.Thread(target=create_book, name=year, args=(year, title, url, toc_xpath)))
 
     for thread_group in group_by_n(threads, num_parallel_creations):
