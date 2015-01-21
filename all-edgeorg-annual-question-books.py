@@ -102,20 +102,23 @@ data = (
      ),
     )
 
+def create_book(year, title, url, toc_xpath):
+    print('Creating Edge book for {}'.format(year))
+
+    in_recipe = 'edgeorg-annual-question.recipe.template'
+    out_recipe = 'edgeorg-annual-question-{}.recipe'.format(year)
+
+    with open(in_recipe) as template_f:
+        template = string.Template(template_f.read())
+        transformed_recipe = template.substitute(year=year, title=title, url=url, toc_xpath=toc_xpath)
+
+    with open(out_recipe, 'w') as out_f:
+        out_f.write(transformed_recipe)
+
+    subprocess.check_call(['ebook-convert', out_recipe, 'Edge{}.epub'.format(year)])
+
+    os.remove(out_recipe)
+
 if __name__ == '__main__':
     for year, title, url, toc_xpath in data:
-        print('Creating Edge book for {}'.format(year))
-
-        in_recipe = 'edgeorg-annual-question.recipe.template'
-        out_recipe = 'edgeorg-annual-question-{}.recipe'.format(year)
-
-        with open(in_recipe) as template_f:
-            template = string.Template(template_f.read())
-            transformed_recipe = template.substitute(year=year, title=title, url=url, toc_xpath=toc_xpath)
-
-        with open(out_recipe, 'w') as out_f:
-            out_f.write(transformed_recipe)
-
-        subprocess.check_call(['ebook-convert', out_recipe, 'Edge{}.epub'.format(year)])
-
-        os.remove(out_recipe)
+        create_book(year, title, url, toc_xpath)
