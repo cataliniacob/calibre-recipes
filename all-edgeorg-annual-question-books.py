@@ -2,9 +2,12 @@
 
 from __future__ import print_function
 
+import itertools
+import multiprocessing
 import os
 import subprocess
 import string
+import threading
 
 common_toc_xpath1 = '//*[contains(concat(" ", @class, " "), " response-title ")]/h:span'
 common_toc_xpath2 = '//*[contains(concat(" ", @class, " "), " response ")]//*/h:div[@class="field-content"]/h:p[1]'
@@ -102,6 +105,11 @@ data = (
      ),
     )
 
+def group_by_n(iterable, n):
+    c = itertools.count()
+    for k, g in itertools.groupby(iterable, lambda x: c.next() // n):
+         yield list(g)
+
 def create_book(year, title, url, toc_xpath):
     print('Creating Edge book for {}'.format(year))
 
@@ -120,5 +128,16 @@ def create_book(year, title, url, toc_xpath):
     os.remove(out_recipe)
 
 if __name__ == '__main__':
+    num_parallel_creations = multiprocessing.cpu_count()
+    print('Doing creations in groups of {}'.format(num_parallel_creations))
+
+    threads = []
     for year, title, url, toc_xpath in data:
-        create_book(year, title, url, toc_xpath)
+        threads.append(threading.Thread(target=create_book, name=year, args=(year, title, url, toc_xpath)))
+
+    for thread_group in group_by_n(threads, num_parallel_creations):
+        for t in thread_group:
+            t.start()
+
+        for t in thread_group:
+            t.join()
