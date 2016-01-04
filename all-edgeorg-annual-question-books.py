@@ -108,6 +108,11 @@ data = (
      'http://edge.org/responses/q2015',
      common_toc_xpath1
      ),
+     ('2016',
+     'What do you consider the most interesting recent [scientific] news? What makes it important?',
+     'http://edge.org/responses/what-do-you-consider-the-most-interesting-recent-scientific-news-what-makes-it',
+     common_toc_xpath1
+     ),
     )
 
 def group_by_n(iterable, n):
