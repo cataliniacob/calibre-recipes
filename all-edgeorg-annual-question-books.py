@@ -117,7 +117,7 @@ data = (
 
 def group_by_n(iterable, n):
     c = itertools.count()
-    for k, g in itertools.groupby(iterable, lambda x: c.next() // n):
+    for k, g in itertools.groupby(iterable, lambda x: next(c) // n):
          yield list(g)
 
 def create_book(year, title, url, toc_xpath):
