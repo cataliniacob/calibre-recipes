@@ -23,8 +23,30 @@ class EdgeOrgAnnualQuestionRecipe(BasicNewsRecipe):
     def parse_index(self):
         num_articles = 20
         first_part_url_num = 38
+        # ToC came from https://lwn.net/Articles/276782/ by JesseW
+        title_list=["Introduction, personal history, first half of what's-a-linker",
+                    "What's-a-linker: Dynamic linking, linker data types, linker operation",
+                    "Address spaces, Object file formats",
+                    "Shared Libraries",
+                    "More Shared Libraries -- specifically, linker implementation; ELF Symbols",
+                    "Relocations, Position Dependent Shared Libraries",
+                    "Thread Local Storage (TLS) optimization",
+                    "ELF Segments and Sections",
+                    "Symbol Versions, Relaxation optimization",
+                    "Parallel linking",
+                    "Archive format",
+                    "Symbol resolution",
+                    "Symbol resolution from the user's point of view; Static Linking vs. Dynamic Linking",
+                    "Link time optimization, aka Whole Program optimization; Initialization Code",
+                    "COMDAT sections",
+                    "C++ Template Instantiation, Exception Frames",
+                    "Warning Symbols,",
+                    "Incremental Linking",
+                    "__start and __stop Symbols, Byte Swapping",
+                    "Last post; Update on gold's status"
+                    ]
 
-        linker_articles = [{'title': 'Part {}'.format(i + 1),
+        linker_articles = [{'title': 'Part {}  '.format(i + 1) + title_list[i],
                             'url': 'http://www.airs.com/blog/archives/{}'.format(first_part_url_num + i),
                             'description': '',
                             'date': ''
