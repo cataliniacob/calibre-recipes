@@ -46,7 +46,7 @@ class EdgeOrgAnnualQuestionRecipe(BasicNewsRecipe):
                     "Last post; Update on gold's status"
                     ]
 
-        linker_articles = [{'title': 'Part {}  '.format(i + 1) + title_list[i],
+        linker_articles = [{'title': 'Part {} {}'.format(i + 1, title_list[i]),
                             'url': 'http://www.airs.com/blog/archives/{}'.format(first_part_url_num + i),
                             'description': '',
                             'date': ''
